@@ -33,8 +33,17 @@ services:
     ports:
       - '1337:1337'
     environment:
-      DATABASE_CLIENT: sqlite
-      DATABASE_FILENAME: './data.db'
+      # DATABASE_CLIENT: sqlite
+      # DATABASE_FILENAME: './data.db'
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
+      JWT_SECRET: kjklfjasdHUY&/£&&&ggyt
+      ADMIN_JWT_SECRET: ghjRTFSKijhj%77868GVHFFH
+      APP_KEYS: hkGY557%$877FFDE
       STRAPI_INTERNAL_URL: 'http://backend:1337'
     networks:
       - blog-network
@@ -42,7 +51,7 @@ services:
       - ./backend:/home/node/app
     #command: ["tail", "-f", "/dev/null"]
     working_dir: /home/node/app
-    command: sh -c "npm start"
+    command: sh -c "npm run dev"
 
   frontend:
     image: node:22-alpine
